@@ -1,0 +1,14 @@
+<%=  form_for @product do |f|%>
+  <%=  f.label :name %>
+	<%=  f.text_field :name %>
+	<%=  f.label :description %>
+	<%=  f.text_area :description %>
+	<%=  f.label "category" %>
+	<%= select_tag "product[category_ids]", options_for_select(Category.all.collect{|p| [ p.title, p.id ] }), placeholder: "Please Select the Category", :multiple => true,:style => 'width: 100%',"data-required" => "true"
+                  %>
+	<%=  f.label :price %>
+	<%=  f.number_field :price %>
+	<%=  f.label 'Upload picture for product' %>
+	<%=  f.file_field :product_img %>
+	<%= f.submit 'create'%>
+<% end %>

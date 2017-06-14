@@ -1,0 +1,19 @@
+<div class="col-md-12 col-sm-12 ">
+	<div class="row">
+		<%=render partial: 'layouts/side_pane'%>
+		<div class="col-md-9">
+			<% @products.each do |product|%>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+				<%=image_tag product.product_img.url,style: 'max-width: 95px;'%>
+				<div class="caption">
+				  <h3><%=product.name%></h3>
+				  <p><%=product.description%></p>
+				  <p><%= link_for_products(product)%></p>
+				</div>
+				</div>
+			</div>
+			<%end%>
+		</div>
+	</div>
+</div>
