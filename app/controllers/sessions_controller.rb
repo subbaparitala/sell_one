@@ -15,7 +15,7 @@ class SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
-    if add_cart.present?
+    if add_cart.present? && cart_products.present?
       if resource.orders.active.present? 
       product_orders = resource.orders.active.product_orders.map(&:id).length > (cart_products.count rescue 0) ? get_product_orders : get_product_orders_session
         product_orders.each do |product|
