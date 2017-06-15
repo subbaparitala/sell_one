@@ -17,7 +17,7 @@ class SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     if add_cart.present?
       if resource.orders.active.present? 
-      product_orders = resource.orders.active.product_orders.map(&:id).length > cart_products.count ? get_product_orders : get_product_orders_session
+      product_orders = resource.orders.active.product_orders.map(&:id).length > (cart_products.count rescue 0) ? get_product_orders : get_product_orders_session
         product_orders.each do |product|
           resource.orders.active.product_orders.find_or_create_by(product_id: product) 
         end
