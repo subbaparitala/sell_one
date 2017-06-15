@@ -1,0 +1,52 @@
+
+
+<table >
+</table>
+<% current_user.id %>
+
+<div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>customer_id</th>
+          <th>customer_first_name</th>
+          <th>Product name </th>
+          <th>category_id</th>
+          <th>category_name</th>
+          <th>number_purchased</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><%= current_user.id%></td>
+        <td><%= current_user.first_name%></td>
+         <td>
+        	<ul>
+        	<% @products.each do |pr| %>
+        	
+              <li><%= pr.name%></li>
+        	<% end %>
+        	<ul>
+        </td>
+        <td>
+        	<ul>
+        	<% @products.each do |pr| %>
+        	
+              <li><%= pr.product_categories.map(&:category_id).join(',')%></li>
+        	<% end %>
+        	<ul>
+        </td>
+        <td><ul>
+        	<% @products.each do |pr| %>
+              <li><%= pr.product_categories.collect{|k| k.category.title}.join(', ')%></li>
+        	<% end %>
+        	<ul>
+        </td>
+        <td><%= @products.count %></td>
+      </tr>
+      </tbody>
+    </table>
+</div>
+
+<style>
+ul li {list-style: none;}
+<style>
