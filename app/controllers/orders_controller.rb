@@ -21,8 +21,11 @@ class OrdersController < ApplicationController
 	def purchase_now
 		session[:add_to_cart] = nil
 		session[:cart_products] = nil
-		current_user.orders.active.update_attributes(active: false)
-		redirect_to root_path
+		current_user.orders.active.update_attributes(active: false) rescue nil
+		@orders = current_user.orders.joins(:products).where(active: false)
+		@products = Product.joins(:orders).where("orders.active = false")
+		
+		
 	end
 
 	def save_cart

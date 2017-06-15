@@ -1,4 +1,5 @@
 class ProductCategory < ApplicationRecord
+
 	belongs_to :product
-	belongs_to :categroy
+	belongs_to :category
 end
