@@ -9,8 +9,8 @@ class User < ApplicationRecord
 
   def full_name
   	<<-EOT.gsub(/^\s+/, '')
-			#{first_names rescue nil}
-			#{last_names rescue nil}
+			#{first_name rescue nil}
+			#{last_name rescue nil}
     EOT
   end
 end
