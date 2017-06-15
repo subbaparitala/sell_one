@@ -19,12 +19,13 @@ Category.create(title: "camera")
 mobiles.each do |m|
 	product = Product.new(name: m ,description: "", price: rand.to_s[2..5].to_f,  product_img: seed_image(m.first+m.last))
   if product.save
-  	product.product_categories.create(category_id: Category.first)
+  	product.product_categories.create(category_id: Category.first.id)
   end
 end
 cameras.each do |c|
 	product = Product.new(name: c ,description: "", price: rand.to_s[2..5].to_f,product_img: seed_image(c.first+c.last))
   if product.save
-  	product.product_categories.create(category_id: Category.last)
+  	debugger
+  	product.product_categories.create(category_id: Category.last.id)
   end
 end
