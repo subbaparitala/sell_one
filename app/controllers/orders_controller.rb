@@ -55,12 +55,13 @@ class OrdersController < ApplicationController
 	end
 
 	def remove_from_cart
-		if current_user.present? 
-			order = Order.find(params[:order_id])
-			po = order.product_orders.find_by_product_id(params[:product_id])
+	  if current_user.present? 
+		order = Order.find(params[:order_id])
+		po = order.product_orders.find_by_product_id(params[:product_id])
 	  	po.destroy
-	  	session[:cart_products].delete(params[:product_id]) if session[:cart_products].present?
 	  end
+	  session[:cart_products] = session[:cart_products].map(&:to_i)
+	  session[:cart_products].delete(params[:product_id].to_i) if session[:cart_products].present?
 	  redirect_to root_path
 	end
 end
