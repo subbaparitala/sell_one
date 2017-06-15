@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :orders
 
   def full_name
-    return first_name+" "+last_name
+  	<<-EOT.gsub(/^\s+/, '')
+			#{first_names rescue nil}
+			#{last_names rescue nil}
+    EOT
   end
-
 end
